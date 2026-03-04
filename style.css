@@ -303,7 +303,7 @@ main {
     flex: 1 1 20vw;
 }
 
-.fun-fact-card, .cara-kerja-card {
+.cara-kerja-card {
     padding: 2.5rem;
     color: #727272;
     border-radius: 32px;
@@ -420,7 +420,6 @@ footer {
     }
 
     .why-us-card,
-    .fun-fact-card,
     .cara-kerja-card {
         flex: 1 1 100%;
         width: 90%;
@@ -429,7 +428,6 @@ footer {
     }
 
     .why-us-card > h1,
-    .fun-fact-card > h1,
     .cara-kerja-card > h1 {
         font-size: 1.2rem;
     }
@@ -455,5 +453,6 @@ footer {
     footer>p {
         font-size: 0.6rem;
     }
+
 
 }
