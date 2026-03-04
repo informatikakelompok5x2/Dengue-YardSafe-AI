@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --regular-font: "Inter", sans-serif;
+    --decorative-font: "Alice", sans-serif;
+    --primary-color: #f5f5f5;
+    --secondary-color1: #e62828;
+    --secondary-color-font: #d10000;
+    background-color: var(--primary-color);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+
+h1 {
+    font-size: 2rem;
+    font-family: var(--regular-font);
+    font-weight: 800;
+}
+
+p, a {
+    font-size: 1rem;
+    text-decoration: none;
+    font-family: var(--regular-font);
+}
+
+.button1, .button2 {
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 18px 25px;
+    margin: 2rem;
+    font-family: var(--regular-font);
+    font-weight: 600;
+    border: solid 2px;
+    border-radius: 100rem;
+    display: inline-block;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.125);
+    transition: all 0.2s ease;
+}
+
+.button1 {
+    background-color: var(--secondary-color1);
+    border-color: transparent;
+    color: white;
+}
+
+.button2 {
+    background-color: white;
+    border-color: var(--secondary-color1);
+    color: var(--secondary-color-font);
+}
+
+.button1:hover {
+    background-color: var(--secondary-color-font);
+    border: solid 2px var(--secondary-color1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.488);
+}
+
+.button2:hover {
+    background-color: var(--primary-color);
+    border: solid 2px var(--secondary-color1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.488);
+}
+
+.flexbtn-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexbtn-container>.button1, .flexbtn-container>.button2 {
+    flex: 1 1 auto;
+}
+
+#navlinks {
+    height: 100%;
+    margin: 0;
+}
+
+#navlogo {
+    height: fit-content;
+    margin: auto 0;
+}
+
+#navlogo>p {
+    font-size: 1.3rem;
+    color: white;
+    font-family: var(--decorative-font);
+    -webkit-text-stroke: 1.1px currentColor;
+    height: fit-content;
+    margin: auto;
+}
+
+nav>div>ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    height: 100%;
+}
+
+#navlinks>ul>li {
+    padding: 1rem 1.5rem;
+}
+
+#navlinks>ul>li>a {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#navlinks>ul>li>a:hover, #hamburger-menu:hover {
+    color: #dddddd;
+}
+
+nav {
+    width: 100%;
+    top: 0;
+    background-color: #cf1d1df1;;
+    font-family: var(--regular-font);
+    height: 3rem;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    z-index: 10;
+}
+
+#hamburger-menu {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    display: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    background-image: 
+        linear-gradient(rgba(128, 128, 128, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(128, 128, 128, 0.08) 1px, transparent 1px);
+    width: 100%;
+    background-color: white;
+    height: 100%;
+    background-size: 40px 40px;
+    left: 0;
+}
+
+main {
+    padding-top: 3rem;
+}
+
+#heropage {
+    text-align: center;
+    padding: 2.5rem 0;
+    color: var(--secondary-color1);
+    overflow-x: hidden;
+    font-weight: 500;
+}
+
+#heropage-logo {
+    margin: auto;
+    padding: 5vh 15vw;
+    width: fit-content;
+}
+
+#heropage-logo>p {
+    font-family: var(--decorative-font);
+    color: var(--secondary-color1);
+    -webkit-text-stroke: 2px currentColor;
+    font-size: 4rem;
+    transition: all 0.2s ease-in-out;
+    width: fit-content;
+    text-shadow: 0 2px 20px rgba(254, 82, 82, 0.537);
+}
+
+#heropage-logo>p:hover {
+    text-shadow: 0 2px 20px rgba(255, 43, 43, 0.74);
+}
+
+#heropage-desc {
+    color: black;
+}
+
+#heropage-desc>p {
+    color: rgba(0, 0, 0, 0.555);
+}
+
+#cekpotensi {
+    color: var(--secondary-color-font);
+    background-image: radial-gradient(#ffd1d1, #ffe7e74b, transparent);
+}
+
+.section-page {
+    text-align: center;
+    padding: 90px 0;
+}
+
+.section-page>p {
+    color: rgba(0, 0, 0, 0.568);
+}
+
+.card {
+    width: 80vw;
+    border: 1px solid transparent;
+}
+#cp-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: fit-content;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.cp-card {
+    background-color: rgba(255, 255, 255, 0.801);
+    border-radius: 48px;
+    border: 2px solid var(--secondary-color1);
+    padding: 36px 36px 0 36px;
+    text-align: left;
+}
+
+.cp-card>p {
+    margin: 0 2rem 0 0;
+    color: #e62828be;
+}
+
+.cp-card>h1 {
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    font-family: var(--regular-font);
+    font-weight: 700;
+    text-align: left;
+}
+
+.cp-card>button {
+    width: 50%;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+
+.card>h1 {
+    font-size: 1.6rem;
+}
+
+#about-us {
+    background-color: var(--primary-color);
+    width: 90%;
+    margin: auto auto 2rem auto;
+    padding: 0 1rem;
+    box-shadow: 0 2px 20px rgba(212, 184, 184, 0.338);
+    border-radius: 36px;
+    border-top: 5px solid var(--secondary-color1);
+}
+
+#why-us{
+    width: 95%;
+    margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem;
+    margin: auto;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    width: 95%;
+    min-width: 0;
+}
+
+.flex-container>* {
+    min-width: none;
+}
+
+.why-us-card>h1, .fun-fact-card>h1, .cara-kerja-card>h1 {
+    color: var(--secondary-color1);
+}
+
+.why-us-card {
+    padding: 4rem 2.5rem 2.5rem 2.5rem;
+    color: #727272;
+    border-radius: 32px;
+    background-color: #ffffff6e;
+    box-shadow: 0 5px 20px rgba(232, 232, 232, 0.4);
+    transition: box-shadow 0.15s ease-in, background-color 0.15s ease-in, border-color 0.2s ease;
+    border-color: #dcdcdc;
+    position: relative;
+    /* width: 20vw; */
+    flex: 1 1 20vw;
+}
+
+.fun-fact-card, .cara-kerja-card {
+    padding: 2.5rem;
+    color: #727272;
+    border-radius: 32px;
+    background-color: #ffffff6e;
+    box-shadow: 0 5px 20px rgba(232, 232, 232, 0.4);
+    transition: box-shadow 0.15s ease-in, background-color 0.15s ease-in, border-color 0.2s ease;
+    border-color: #dcdcdc;
+    position: relative;
+    flex: 1 1 15vw;
+}
+
+.why-us-card:hover, .fun-fact-card:hover, .cara-kerja-card:hover {
+    box-shadow: 0 8px 30px rgba(172, 172, 172, 0.4);
+    background-color: rgb(255, 255, 255);
+    border-color: var(--secondary-color1);
+}
+
+.why-us-icon {
+    position: absolute;
+    opacity: 8%;
+    width: 6rem;
+    height: 6rem;
+    z-index: 0;
+    top: 2rem;
+    left: 2rem;
+    rotate: 340deg;
+}
+
+.cara-kerja-icon {
+    font-size: 3rem;
+    font-weight: 800;
+    position: absolute;
+    opacity: 10%;
+    width: 6rem;
+    height: 6rem;
+    z-index: 0;
+    top: 2rem;
+    left: 2rem;
+}
+
+footer {
+    background-color: var(--secondary-color1);
+    font-weight: 600;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 0.5rem 0;
+    }
+
+    #navlogo {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+
+    #navlinks > ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        background-color: var(--secondary-color1);
+    }
+
+    #navlinks {
+        display: none;
+    }
+
+    #navlinks > ul > li {
+        padding: 0.5rem 0;
+    }
+
+    #hamburger-menu {
+        display: block;
+    }
+
+    #heropage-logo > p {
+        font-size: 2.2rem;
+        -webkit-text-stroke: 1px currentColor;
+    }
+
+    #heropage-desc > h1 {
+        font-size: 1.3rem !important;
+        padding: 0 1rem;
+    }
+
+    #heropage-desc > p {
+        padding: 0 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .section-page {
+        padding: 60px 0;
+    }
+
+    .flexbtn-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .button1, .button2 {
+        width: 90%;
+        margin: 0.5rem 0;
+        padding: 14px 20px;
+    }
+
+    .cp-card {
+        border-radius: 28px;
+        padding: 24px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .why-us-card,
+    .fun-fact-card,
+    .cara-kerja-card {
+        flex: 1 1 100%;
+        width: 90%;
+        padding: 2rem;
+        border-radius: 24px;
+    }
+
+    .why-us-card > h1,
+    .fun-fact-card > h1,
+    .cara-kerja-card > h1 {
+        font-size: 1.2rem;
+    }
+
+    .why-us-icon,
+    .cara-kerja-icon {
+        width: 4rem;
+        height: 4rem;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    #about-us {
+        width: 100%;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+    }
+
+    body::before {
+        background-size: 25px 25px;
+    }
+
+    footer>p {
+        font-size: 0.6rem;
+    }
+
+}
