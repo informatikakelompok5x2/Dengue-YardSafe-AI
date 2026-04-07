@@ -11,28 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
- 
-    <!-- ==================== NAVBAR ==================== -->
     <nav id="navbar">
         <div id="navlogo"><p>Dengue YardSafe AI</p></div>
-        <div id="hamburger-menu" onclick="toggleNavLinks()" aria-label="Buka menu">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-            </svg>
-        </div>
-        <div id="navlinks">
-            <ul>
-                <li><a href="#cekpotensi">Deteksi</a></li>
-            </ul>
-        </div>
+        <div id="nav-tagline">Sistem Deteksi Nyamuk · Berbasis AI</div>
     </nav>
  
     <main>
- 
-        <!-- ==================== DETEKSI SECTION ==================== -->
         <section id="cekpotensi" class="section-page">
- 
-            <!-- ── BLOB MIST HEADER ── -->
             <div id="section-header">
                 <div class="sh-blob1"></div>
                 <div class="sh-blob2"></div>
@@ -60,17 +45,11 @@
                 <div class="cp-card">
  
                     <div id="cp-scan">
- 
-                        <!-- ══════════════════════════════
-                             INPUT GAMBAR
-                        ══════════════════════════════ -->
                         <div class="cp-scan-side" id="cp-gambar-mode">
                             <h3 class="scan-side-title">📷 Cek Gambar Tempat</h3>
                             <p class="scan-side-desc">Identifikasi potensi suatu lingkungan dengan menggunakan gambar.</p>
  
                             <div class="cp-scan-option">
- 
-                                <!-- Upload area -->
                                 <div id="gambar-upload-section">
                                     <label class="cp-upload-area" for="upload-input-gambar">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="cp-upload-icon" fill="currentColor" viewBox="0 0 16 16">
@@ -86,26 +65,26 @@
                                     </div>
                                     <div class="upload-divider"><span>atau</span></div>
                                 </div>
- 
-                                <!-- Webcam container -->
                                 <div class="webcam-container" id="webcam-gambar-container" style="display:none;"></div>
- 
-                                <!-- Tombol-tombol -->
+                                <div id="notif-cahaya" style="display:none;">
+                                    💡 Pastikan area yang difoto berada dalam kondisi cahaya yang cukup untuk hasil deteksi yang akurat.
+                                </div>
                                 <div class="gambar-btn-group">
                                     <button class="button1" type="button" id="btn-mulai-kamera" onclick="initWebcamGambar()">
                                         📷 Gunakan Kamera
+                                    </button>
+                                    <button class="button2" type="button" id="btn-ganti-kamera" onclick="gantiKamera()" style="display:none;">
+                                        🔄 Ganti Kamera
                                     </button>
                                     <button class="button2" type="button" id="btn-tangkap-frame" onclick="tangkapFrame()" style="display:none;">
                                         📸 Tangkap Frame
                                     </button>
                                     <button class="button2" type="button" id="btn-reset-gambar" onclick="resetGambar()" style="display:none;">
-                                        🔄 Reset
+                                        ✖ Reset
                                     </button>
                                 </div>
  
                             </div>
- 
-                            <!-- Panduan -->
                             <div class="panduan-wrap">
                                 <button class="accordion-trigger" type="button" onclick="toggleAccordion(this)">
                                     ❓ Bagaimana cara menggunakannya?
@@ -140,10 +119,6 @@
                         </div>
  
                         <div id="divider"></div>
- 
-                        <!-- ══════════════════════════════
-                             HASIL ANALISIS
-                        ══════════════════════════════ -->
                         <div id="cp-result-side">
  
                             <div class="result-header">
@@ -180,10 +155,12 @@
  
                             <div class="result-block">
                                 <span class="result-label">Skor Risiko</span>
-                                <div id="riskscorebar">
-                                    <div id="riskscorebarresult" style="width:0%"></div>
+                                <div class="confidence-bar-wrap">
+                                    <div class="confidence-bar" id="riskscorebar">
+                                        <div id="riskscorebarresult" style="width:0%"></div>
+                                    </div>
+                                    <span class="confidence-pct" id="persentaseriskscore" style="color:var(--color-primary);">—</span>
                                 </div>
-                                <p id="persentaseriskscore">—</p>
                             </div>
  
                             <div class="result-block">
@@ -193,53 +170,19 @@
                                     <p id="prediksi-kategori-desc" class="kategori-desc"></p>
                                 </div>
                             </div>
- 
-                            <!-- Info ringkas -->
                             <div id="info-ringkas-gambar" class="info-ringkas-wrap">
                                 <div class="info-ringkas-header">
                                     <span class="info-ringkas-icon">💡</span>
                                     <span class="info-ringkas-title">Informasi & Penanganan</span>
                                 </div>
-                                <div class="info-accordion-item">
-                                    <button class="info-acc-trigger" type="button" onclick="toggleInfoAcc(this)">
-                                        📋 Fakta Singkat <span class="acc-icon">+</span>
-                                    </button>
-                                    <div class="info-acc-body">
-                                        <div class="info-acc-inner">
-                                            <p>Nyamuk <em>Aedes aegypti</em> merupakan vektor utama DBD yang tersebar luas di daerah tropis. Nyamuk betina menggigit pada siang hari dan berkembang biak di genangan air bersih yang tenang.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="info-accordion-item">
-                                    <button class="info-acc-trigger" type="button" onclick="toggleInfoAcc(this)">
-                                        ⚠️ Potensi Bahaya <span class="acc-icon">+</span>
-                                    </button>
-                                    <div class="info-acc-body">
-                                        <div class="info-acc-inner">
-                                            <p>Genangan air di sekitar rumah dapat menjadi sarang berkembang biak nyamuk dalam waktu 7–10 hari. Satu wadah air yang tidak tertutup dapat menghasilkan ratusan larva nyamuk.</p>
-                                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="info-accordion-item">
-                                    <button class="info-acc-trigger" type="button" onclick="toggleInfoAcc(this)">
-                                        🧹 Cara Penanganan <span class="acc-icon">+</span>
-                                    </button>
-                                    <div class="info-acc-body">
-                                        <div class="info-acc-inner">
-                                            <p>Lakukan program <strong>3M Plus</strong>: <strong>Menguras</strong> tempat penampungan air minimal seminggu sekali, <strong>Menutup</strong> rapat tempat penampungan, dan <strong>Mendaur ulang</strong> barang bekas.</p>
-                                            <p>Taburkan bubuk abate pada tempat yang sulit dikuras. Gunakan kelambu dan losion anti nyamuk sebagai perlindungan tambahan.</p>
-                                        </div>
-                                    </div>
+                                <div class="info-placeholder-msg">
+                                    Unggah gambar atau gunakan kamera untuk melihat informasi penanganan.
                                 </div>
                             </div>
  
                         </div>
-                        <!-- end cp-result-side -->
  
                     </div>
-                    <!-- end cp-scan -->
  
                 </div>
             </div>
@@ -251,300 +194,7 @@
         <p>©2026 Kelompok 5 Kelas X-2 &nbsp;·&nbsp; <strong>#StopDBD</strong></p>
     </footer>
  
-    <script>
-    // ============================================================
-    // DATA
-    // ============================================================
-    const indicators = {
-        genangan: {
-            label: "Air Tergenang", weight: 50,
-            subFactors: [
-                { label: "Air tidak mengalir / statis" },
-                { label: "Permukaan air terbuka dan terekspos" },
-                { label: "Berpotensi menjadi habitat jentik nyamuk" },
-            ],
-        },
-        wadah: {
-            label: "Wadah Penampung", weight: 35,
-            subFactors: [
-                { label: "Terdeteksi objek berbentuk wadah" },
-                { label: "Berpotensi menampung air hujan atau air tergenang" },
-                { label: "Tidak memiliki drainase atau penutup" },
-            ],
-        },
-    };
- 
-    const warnings = {
-        got: {
-            label: "Selokan / Got", icon: "🚰",
-            message: "Terdeteksi selokan. Pastikan saluran air tidak tersumbat dan air dapat mengalir dengan lancar.",
-        },
-        clutter: {
-            label: "Tumpukan Sampah / Barang Bekas", icon: "🗑️",
-            message: "Terdeteksi tumpukan sampah. Lingkungan tidak terawat berpotensi menyembunyikan wadah penampung air.",
-        },
-    };
- 
-    const classMapping = {
-        ban_tanpa_air:    { indikator: { genangan: false, wadah: true  }, warning: { got: false, clutter: false }, deskripsi: "Ban bekas tanpa air terdeteksi sebagai wadah potensial." },
-        ban_berair:       { indikator: { genangan: true,  wadah: true  }, warning: { got: false, clutter: false }, deskripsi: "Ban bekas berisi air terdeteksi sebagai wadah aktif dengan genangan." },
-        selokan_berair:   { indikator: { genangan: false, wadah: false }, warning: { got: true,  clutter: false }, deskripsi: "Selokan berair terdeteksi. Kondisi aliran tidak dapat diverifikasi." },
-        wadah_berair:     { indikator: { genangan: true,  wadah: true  }, warning: { got: false, clutter: false }, deskripsi: "Wadah berisi air terdeteksi sebagai breeding spot aktif." },
-        genangan_air:     { indikator: { genangan: true,  wadah: false }, warning: { got: false, clutter: false }, deskripsi: "Genangan air di permukaan keras terdeteksi." },
-        tumpukan_sampah:  { indikator: { genangan: false, wadah: false }, warning: { got: false, clutter: true  }, deskripsi: "Tumpukan sampah terdeteksi sebagai faktor risiko laten." },
-        wadah_kosong:     { indikator: { genangan: false, wadah: true  }, warning: { got: false, clutter: false }, deskripsi: "Wadah kosong terdeteksi. Berpotensi menampung air hujan." },
-        tidak_berpotensi: { indikator: { genangan: false, wadah: false }, warning: { got: false, clutter: false }, deskripsi: "Tidak terdeteksi faktor risiko pada gambar ini." },
-    };
- 
-    const riskCategories = [
-        { min: 0,   max: 0,   label: "Aman",          bgColor: "#dcfce7", borderColor: "#86efac", textColor: "#166534", description: "Tidak terdeteksi faktor risiko berkembang biaknya nyamuk DBD." },
-        { min: 1,   max: 35,  label: "Risiko Rendah",  bgColor: "#fef9c3", borderColor: "#fde047", textColor: "#854d0e", description: "Terdeteksi sebagian kecil faktor risiko. Tetap perlu diwaspadai." },
-        { min: 36,  max: 60,  label: "Risiko Sedang",  bgColor: "#ffedd5", borderColor: "#fdba74", textColor: "#9a3412", description: "Terdeteksi faktor risiko yang cukup signifikan. Segera lakukan tindakan pencegahan." },
-        { min: 61,  max: 85,  label: "Risiko Tinggi",  bgColor: "#fee2e2", borderColor: "#fca5a5", textColor: "#991b1b", description: "Hampir semua faktor risiko terdeteksi. Segera bersihkan area ini." },
-        { min: 86,  max: 100, label: "Risiko Kritis",  bgColor: "#fce7f3", borderColor: "#f9a8d4", textColor: "#831843", description: "Semua faktor risiko terdeteksi. Tindakan segera diperlukan!" },
-    ];
- 
-    // ============================================================
-    // TEACHABLE MACHINE
-    // ============================================================
-    const MODEL_URL = "./model/";
-    let tmModel    = null;
-    let tmWebcam   = null;
-    let loopActive = false;
-    let isFrozen   = false;
- 
-    async function loadModel() {
-        if (tmModel) return;
-        try {
-            tmModel = await tmImage.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
-        } catch (e) {
-            console.error("Gagal memuat model:", e);
-            alert("Model AI tidak ditemukan. Pastikan folder ./model/deteksi_gambar/ sudah ada.");
-        }
-    }
- 
-    async function initWebcamGambar() {
-        await loadModel();
-        if (!tmModel) return;
- 
-        document.getElementById('gambar-upload-section').style.display = 'none';
-        const container = document.getElementById('webcam-gambar-container');
-        container.innerHTML = '';
-        container.style.display = 'block';
- 
-        const flip = true;
-        tmWebcam = new tmImage.Webcam(280, 280, flip);
-        await tmWebcam.setup();
-        await tmWebcam.play();
-        container.appendChild(tmWebcam.canvas);
- 
-        document.getElementById('btn-mulai-kamera').style.display  = 'none';
-        document.getElementById('btn-tangkap-frame').style.display = 'inline-flex';
-        document.getElementById('btn-reset-gambar').style.display  = 'inline-flex';
- 
-        isFrozen = false;
-        loopActive = true;
-        loopWebcam();
-    }
- 
-    async function loopWebcam() {
-        if (!loopActive) return;
-        if (!isFrozen) {
-            tmWebcam.update();
-            await predictFromCanvas(tmWebcam.canvas);
-        }
-        window.requestAnimationFrame(loopWebcam);
-    }
- 
-    async function tangkapFrame() {
-        if (!tmWebcam || isFrozen) return;
-        isFrozen = true;
-        tmWebcam.pause();
-        await predictFromCanvas(tmWebcam.canvas);
-        const btn = document.getElementById('btn-tangkap-frame');
-        btn.textContent = '✅ Frame Tertangkap';
-        btn.disabled = true;
-    }
- 
-    async function predictFromCanvas(canvasOrImg) {
-        if (!tmModel) return;
-        const prediction = await tmModel.predict(canvasOrImg);
-        const best = prediction.reduce((a, b) => a.probability > b.probability ? a : b);
-        renderHasil(best.className, best.probability);
-    }
- 
-    document.getElementById('upload-input-gambar').addEventListener('change', async function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        await loadModel();
-        if (!tmModel) return;
- 
-        const previewWrap = document.getElementById('upload-preview-wrap');
-        const previewImg  = document.getElementById('upload-preview-img');
-        const reader = new FileReader();
-        reader.onload = function(ev) {
-            previewImg.src = ev.target.result;
-            previewWrap.style.display = 'block';
-            document.getElementById('upload-label-text').textContent = file.name;
-            previewImg.onload = async function() {
-                await predictFromCanvas(previewImg);
-            };
-        };
-        reader.readAsDataURL(file);
-    });
- 
-    function renderHasil(className, confidence) {
-        const key     = className.toLowerCase().replace(/\s+/g, '_');
-        const mapping = classMapping[key];
- 
-        // Objek Terdeteksi
-        document.getElementById('prediksi-objek').innerHTML = mapping
-            ? `<strong>${mapping.deskripsi}</strong>`
-            : `<span>${className}</span>`;
- 
-        // Confidence
-        const pct = Math.round(confidence * 100);
-        document.getElementById('confidence-bar-gambar').style.width = pct + '%';
-        document.getElementById('confidence-pct-gambar').textContent = pct + '%';
- 
-        if (!mapping) return;
- 
-        // Hitung skor
-        let skor = 0;
-        Object.keys(indicators).forEach(k => {
-            if (mapping.indikator[k]) skor += indicators[k].weight;
-        });
- 
-        // Faktor Potensi
-        const faktorBlock = document.getElementById('label-faktorpotensi');
-        const faktorList  = document.getElementById('faktor-potensi-list');
-        const aktifFaktor = Object.keys(indicators).filter(k => mapping.indikator[k]);
-        faktorList.innerHTML = '';
-        if (aktifFaktor.length > 0) {
-            faktorBlock.style.display = 'flex';
-            aktifFaktor.forEach(k => {
-                const ind  = indicators[k];
-                const card = document.createElement('div');
-                card.className = 'cp-result-card faktor-card';
-                card.innerHTML = `<strong>✔ ${ind.label}</strong>
-                    <ul class="subfactor-list">
-                        ${ind.subFactors.map(sf => `<li>${sf.label}</li>`).join('')}
-                    </ul>`;
-                faktorList.appendChild(card);
-            });
-        } else {
-            faktorBlock.style.display = 'none';
-        }
- 
-        // Warning
-        const warningBlock = document.getElementById('label-warning');
-        const warningList  = document.getElementById('warning-list');
-        const aktifWarning = Object.keys(warnings).filter(k => mapping.warning[k]);
-        warningList.innerHTML = '';
-        if (aktifWarning.length > 0) {
-            warningBlock.style.display = 'flex';
-            aktifWarning.forEach(k => {
-                const w    = warnings[k];
-                const card = document.createElement('div');
-                card.className = 'cp-result-card warning-card';
-                card.innerHTML = `<strong>${w.icon} ${w.label}</strong>
-                    <p class="warning-msg">${w.message}</p>`;
-                warningList.appendChild(card);
-            });
-        } else {
-            warningBlock.style.display = 'none';
-        }
- 
-        // Skor bar
-        document.getElementById('riskscorebarresult').style.width  = skor + '%';
-        document.getElementById('persentaseriskscore').textContent = skor + '%';
- 
-        // Kategori
-        const kategori     = riskCategories.find(c => skor >= c.min && skor <= c.max) || riskCategories[riskCategories.length - 1];
-        const kategoriCard = document.getElementById('kategori-card');
-        kategoriCard.style.background  = kategori.bgColor;
-        kategoriCard.style.borderColor = kategori.borderColor;
-        kategoriCard.style.borderStyle = 'solid';
-        const katEl = document.getElementById('prediksi-kategori');
-        katEl.style.color    = kategori.textColor;
-        katEl.textContent    = kategori.label;
-        const katDesc = document.getElementById('prediksi-kategori-desc');
-        katDesc.style.color  = kategori.textColor;
-        katDesc.textContent  = kategori.description;
-    }
- 
-    function resetGambar() {
-        loopActive = false;
-        isFrozen   = false;
-        if (tmWebcam) { tmWebcam.stop(); tmWebcam = null; }
- 
-        const container = document.getElementById('webcam-gambar-container');
-        container.innerHTML = '';
-        container.style.display = 'none';
- 
-        document.getElementById('gambar-upload-section').style.display  = 'block';
-        document.getElementById('upload-preview-wrap').style.display     = 'none';
-        document.getElementById('upload-label-text').textContent         = 'Klik di sini untuk memilih gambar';
-        document.getElementById('upload-input-gambar').value             = '';
- 
-        const btnKamera   = document.getElementById('btn-mulai-kamera');
-        const btnTangkap  = document.getElementById('btn-tangkap-frame');
-        const btnReset    = document.getElementById('btn-reset-gambar');
-        btnKamera.style.display  = 'inline-flex';
-        btnTangkap.style.display = 'none';
-        btnTangkap.textContent   = '📸 Tangkap Frame';
-        btnTangkap.disabled      = false;
-        btnReset.style.display   = 'none';
- 
-        document.getElementById('prediksi-objek').innerHTML              = '<span class="result-placeholder">— Belum dianalisis —</span>';
-        document.getElementById('confidence-bar-gambar').style.width     = '0%';
-        document.getElementById('confidence-pct-gambar').textContent     = '—';
-        document.getElementById('label-faktorpotensi').style.display     = 'none';
-        document.getElementById('label-warning').style.display           = 'none';
-        document.getElementById('riskscorebarresult').style.width        = '0%';
-        document.getElementById('persentaseriskscore').textContent       = '—';
-        document.getElementById('prediksi-kategori').textContent         = '—';
-        document.getElementById('prediksi-kategori-desc').textContent    = '';
-        const kCard = document.getElementById('kategori-card');
-        kCard.style.background  = '';
-        kCard.style.borderColor = '';
-        kCard.style.borderStyle = '';
-    }
- 
-    // ============================================================
-    // NAV & SCROLL
-    // ============================================================
-    function toggleNavLinks() {
-        document.getElementById('navlinks').classList.toggle('nav-open');
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            const t = document.querySelector(a.getAttribute('href'));
-            if (t) t.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 10);
-    });
- 
-    // ============================================================
-    // ACCORDION
-    // ============================================================
-    function toggleAccordion(btn) {
-        const body   = btn.nextElementSibling;
-        const isOpen = body.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        body.classList.toggle('open', !isOpen);
-    }
-    function toggleInfoAcc(btn) {
-        const body   = btn.nextElementSibling;
-        const isOpen = body.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        body.classList.toggle('open', !isOpen);
-    }
- 
-    </script>
+    <script src="./script.js"></script>
  
 </body>
 </html>
