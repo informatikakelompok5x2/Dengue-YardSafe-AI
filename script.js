@@ -359,3 +359,23 @@ window.toggleInfoAcc = function(btn) {
     btn.classList.toggle('open', !isOpen);
     body.classList.toggle('open', !isOpen);
 }
+
+function toggleAccordion(btn) {
+    // Cari elemen body yang ada tepat setelah tombol
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.acc-icon');
+    
+    // Cek apakah sekarang lagi terbuka atau tertutup
+    const isOpen = body.classList.contains('open');
+
+    // Toggle class 'open' (ini nanti yang diatur animasinya di CSS)
+    if (!isOpen) {
+        body.classList.add('open');
+        btn.classList.add('active');
+        if (icon) icon.textContent = '−'; // Ganti jadi tanda minus
+    } else {
+        body.classList.remove('open');
+        btn.classList.remove('active');
+        if (icon) icon.textContent = '+'; // Ganti jadi tanda plus
+    }
+}
