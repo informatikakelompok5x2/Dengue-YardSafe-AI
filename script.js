@@ -310,7 +310,7 @@ function renderHasil(className, confidence) {
     // Info Ringkas
     const infoWrap = document.getElementById('info-ringkas-gambar');
     if (mapping.penanganan === null) {
-        infoWrap.innerHTML = `<div class="info-ringkas-header">...</div><div class="banner-aman">✅ Area ini aman!</div>`;
+        infoWrap.innerHTML = `<div class="info-ringkas-header"></div><div class="banner-aman">✅ Area ini aman!</div>`;
     } else {
         infoWrap.innerHTML = `
             <div class="info-ringkas-header">
