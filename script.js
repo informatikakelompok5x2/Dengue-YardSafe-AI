@@ -40,7 +40,7 @@ const classMapping = {
     },
     selokan_berair: {
         indikator: { genangan: false, wadah: false }, warning: { got: true, clutter: false },
-        deskripsi: "Selokan berair terdeteksi.",
+        deskripsi: "Selokan terdeteksi.",
         mengapaBerbahaya: "Selokan tersumbat adalah habitat ideal nyamuk. Kondisi aliran sulit diverifikasi hanya dari foto, sehingga tetap perlu diwaspadai.",
         penanganan: "Bersihkan selokan dari sampah dan lumpur agar air mengalir lancar. Lakukan rutin minimal sebulan sekali.",
     },
